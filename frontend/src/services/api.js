@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+// Use relative URL for proxy in dev, or full URL from env
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
 export const predictBreed = async (imageFile) => {
   const formData = new FormData()
@@ -17,9 +18,7 @@ export const predictBreed = async (imageFile) => {
       breed: response.data.breed,
       confidence: response.data.confidence,
       topPredictions: response.data.topPredictions || [
-        { breed: response.data.breed, confidence: response.data.confidence },
-        { breed: 'Golden Retriever', confidence: 12.5 },
-        { breed: 'Labrador', confidence: 8.3 },
+        { breed: response.data.breed, confidence: response.data.confidence }
       ],
     }
   } catch (error) {
@@ -29,6 +28,10 @@ export const predictBreed = async (imageFile) => {
     
     if (error.response?.status === 415) {
       throw new Error('Invalid file format. Please upload a valid image file.')
+    }
+    
+    if (error.response?.data?.error) {
+      throw new Error(error.response.data.error)
     }
     
     if (error.response?.data?.message) {
