@@ -13,7 +13,7 @@ app = Flask(__name__)
 # Enable CORS for all routes and all origins (for development)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-UPLOAD_FOLDER = 'uplodes'
+UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Define variables (Must match your training setup)
@@ -21,7 +21,7 @@ IMG_SIZE = 224
 UNIQUE_BREEDS = 120  # Number of dog breeds
 
 # Load labels first
-with open("labeels.json", "r") as f:
+with open("labels.json", "r") as f:
     class_names = json.load(f)
 
 
@@ -47,26 +47,26 @@ def create_model(input_shape=(IMG_SIZE, IMG_SIZE, 3), output_shape=UNIQUE_BREEDS
 
 def load_dog_model(model_path):
     """Load the dog breed classification model"""
-    print(f"📂 Loading model from: {model_path}")
+    print(f"Loading model from: {model_path}")
     
     try:
         # First, try loading the full model directly
         model = tf.keras.models.load_model(model_path)
-        print("✅ Model loaded directly!")
+        print("Model loaded directly!")
         return model
     except Exception as e:
-        print(f"⚠️ Direct load failed: {e}")
-        print("🔄 Rebuilding model architecture and loading weights...")
+        print(f"Direct load failed: {e}")
+        print("Rebuilding model architecture and loading weights...")
         
         # Recreate the model architecture and load weights
         model = create_model()
         model.load_weights(model_path)
-        print("✅ Model weights loaded successfully!")
+        print("Model weights loaded successfully!")
         return model
 
 
 # Load model at startup
-print("🐕 Loading Dog Breed Classification Model...")
+print("Loading Dog Breed Classification Model...")
 model = load_dog_model("Models/Full_img.h5")
 
 
@@ -132,7 +132,7 @@ def predict():
         # Clean up file if it exists
         if os.path.exists(file_path):
             os.remove(file_path)
-        print(f"❌ Prediction error: {str(e)}")
+        print(f"Prediction error: {str(e)}")
         return jsonify({"error": "Failed to process image", "message": str(e)}), 500
 
 
@@ -144,5 +144,5 @@ def get_breeds():
 
 
 if __name__ == "__main__":
-    print("🚀 Starting Dog Breed Classification API on http://localhost:5001")
+    print("Starting Dog Breed Classification API on http://localhost:5001")
     app.run(host="0.0.0.0", port=5001, debug=True)

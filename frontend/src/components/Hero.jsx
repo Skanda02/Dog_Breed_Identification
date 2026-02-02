@@ -28,9 +28,9 @@ const Hero = () => {
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          Upload any dog photo and let our AI instantly identify the breed with 
-          <span className="text-primary-600 font-semibold"> cutting-edge accuracy</span>.
-          Fast, fun, and totally free!
+          Upload any dog photo and let our AI instantly identify the breed.
+          <span className="text-primary-600 font-semibold"> Fast, fun, and totally free!</span>.
+          
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 mb-12">
@@ -52,7 +52,7 @@ const Hero = () => {
             <Heart className="w-6 h-6 text-primary-500" />
             <div className="text-left">
               <p className="text-sm text-gray-500">Accuracy Rate</p>
-              <p className="font-bold text-gray-900">95%+</p>
+              <p className="font-bold text-gray-900">75%+</p>
             </div>
           </motion.div>
 
@@ -63,7 +63,7 @@ const Hero = () => {
             <Sparkles className="w-6 h-6 text-secondary-500" />
             <div className="text-left">
               <p className="text-sm text-gray-500">Breeds Supported</p>
-              <p className="font-bold text-gray-900">120+</p>
+              <p className="font-bold text-gray-900">120</p>
             </div>
           </motion.div>
         </div>
