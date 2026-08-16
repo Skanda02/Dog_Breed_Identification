@@ -1,4 +1,38 @@
-dataset/
-.DS_Store
-.worktrees/
+# --- User instructions ---
+general_instruction.md
 
+# --- Environments / virtualenvs ---
+.venv
+.venv/
+venv
+venv/
+
+# --- Python caches ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ruff_cache/
+.pytest_cache/
+
+# --- Node ---
+node_modules/
+dist/
+.vite/
+
+# --- Local data ---
+dataset/
+uploads/
+uplodes/
+logs/
+*.db
+
+# --- Env files (keep .env.example) ---
+.env
+.env.*
+!.env.example
+
+# --- OS junk ---
+.DS_Store
+
+# --- Worktrees ---
+.worktrees/

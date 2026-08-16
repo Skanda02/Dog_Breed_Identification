@@ -40,6 +40,5 @@ lerna-debug.log*
 vite.config.js.timestamp-*
 
 # Package managers
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# Lockfiles are committed for reproducible installs.
+
